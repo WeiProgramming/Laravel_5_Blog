@@ -31,7 +31,7 @@ return [
 
     'lifetime' => 120,
 
-    'expire_on_close' => false,
+    'expire_on_close' => true, // this is if closed it should open as new
 
     /*
     |--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ return [
     |
     */
 
-    'encrypt' => false,
+    'encrypt' => false, //cnly encrypt cookies
 
     /*
     |--------------------------------------------------------------------------

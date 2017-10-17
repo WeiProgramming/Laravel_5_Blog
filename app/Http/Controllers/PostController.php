@@ -15,7 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        //create a variable and store all blog posts from database into it
+        $posts = Post::orderBy('id','desc') -> paginate(5);//plural posts, eloquent grabs a select num with paginate with all() we get all posts  post
+        //return a view and pass in the above variable
+        return view('posts.index') -> with('posts',$posts);
     }
 
     /**
@@ -65,7 +68,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id); //helper method, eloquent to make it easy to play with the database
-        return view('posts.show') -> with('post',$post); //passing in the variable to post
+        return view('posts.show') -> withPost($post); //passing in the variable to post
     }
 
     /**
@@ -76,7 +79,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        //find the post in the database and save it as a variable
+            $post = Post::find($id);
+        //return the view and pass in that information to fit into the appropriate places of the view
+            return view('posts.edit') -> withPost($post);
+
     }
 
     /**
@@ -88,7 +95,27 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id); //store works by savign a new row, update just updates an existing row
+        //svalidate the data
+        $this->validate($request, array(
+                'title' => 'required|max:255',
+                'body'  => 'required'
+        ));
+
+        // save data to database
+
+
+        $post -> title = $request -> input('title');
+        $post -> body = $request -> input('body');
+
+        $post -> save(); //this actually commit changes and sends save request to db, will go to updated timestamp and update it itself
+
+
+        //set flash data with success message
+
+        Session::flash('success','Message successfully changed');
+        //redirect with flash data to the posts.show
+        return redirect()->route('posts.show', $post ->id); //this will dynaically have an id off post
     }
 
     /**
@@ -99,6 +126,12 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post =Post::find($id); //find the id to delete
+
+        $post -> delete();
+
+        Session::flash('success','The post was successfully deleted');
+
+        return redirect()-> route('posts.index');
     }
 }
