@@ -18,7 +18,7 @@ class PostController extends Controller
         //create a variable and store all blog posts from database into it
         $posts = Post::orderBy('id','desc') -> paginate(5);//plural posts, eloquent grabs a select num with paginate with all() we get all posts  post
         //return a view and pass in the above variable
-        return view('posts.index') -> with('posts',$posts);
+        return view('posts.index') -> withPosts($posts);
     }
 
     /**
