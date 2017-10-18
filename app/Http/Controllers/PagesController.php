@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;//little container you belong in this folder must namespace controllers
 
+use Illuminate\Http\Request;
+
 use App\Post;
 //use Illuminate\//want to access other stuff
 
 class PagesController extends Controller{
 	public function getIndex(){
-		// $posts = Post::orderBy('created_at','desc')->limit(4)->get();
-
-		return view('pages.welcome');
+		$posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
+		return view('pages.welcome')->withPosts($posts);
 	}
 
 	public function getAbout(){

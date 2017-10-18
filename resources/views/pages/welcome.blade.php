@@ -20,16 +20,17 @@
       <!-- end of header .row -->
       <div class="row">
         <div class="col-md-8">
-{{--           @foreach($posts as $post)
+                @foreach($posts as $post)
 
-          <div class="post">
-            <h3>{{$post -> title }}</h3>
-            <p>{{ substr($post -> body,0,300)}}{{strlen($post -> body)>300?"...":""}}</p>
-            <a href="#" class="btn btn-primary">Read More</a>
-          </div>
+                    <div class="post">
+                        <h3>{{ $post->title }}</h3>
+                        <p>{{ substr(strip_tags($post->body), 0, 300) }}{{ strlen(strip_tags($post->body)) > 300 ? "..." : "" }}</p>
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
 
-          @endforeach --}}
-          <hr>
+                    <hr>
+
+                @endforeach
         </div>
 
         <div class="col-md-3 col-md-offset-1">
