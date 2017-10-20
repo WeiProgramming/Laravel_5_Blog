@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('/posts/create');
+        return view('posts.create');
     }
 
     /**
@@ -42,12 +42,14 @@ class PostController extends Controller
         //validate the data, if fail jumps back to create with errors
         $this->validate($request, array(
                 'title'         => 'required|max:255',
+                'slug'          => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
                 'body'          => 'required'
             ));
         //store in the datbase
         //called new post cause that's the name of the model we created
         $post = new Post;
         $post -> title = $request -> title;
+        $post -> slug = $request -> slug;
         $post -> body = $request -> body;
 
         $post -> save();
@@ -99,6 +101,7 @@ class PostController extends Controller
         //svalidate the data
         $this->validate($request, array(
                 'title' => 'required|max:255',
+                'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug', //unique from post table column called slug, last cause process is the longest
                 'body'  => 'required'
         ));
 
@@ -106,6 +109,7 @@ class PostController extends Controller
 
 
         $post -> title = $request -> input('title');
+        $post -> slug = $request -> input('slug');
         $post -> body = $request -> input('body');
 
         $post -> save(); //this actually commit changes and sends save request to db, will go to updated timestamp and update it itself

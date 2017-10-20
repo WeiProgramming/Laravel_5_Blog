@@ -10,6 +10,9 @@
         {{Form::label('title','Title:')}}
         {{Form::text('title',null,['class'=>'form-control input-lg'])}}{{-- needs to the same as sql column (name of column, size of form, route
         }--}}
+        {{Form::label('slug','Slug:',['class' => 'form-spacing-top']) }}
+        {{Form::text('slug',null, array('class'=> 'form-control')) }}
+
          {{Form::label('body','Body:')}}
         {{Form::textarea('body',null,['class' => 'form-control form-spacing-top'])}}
     </div>
