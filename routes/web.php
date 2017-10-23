@@ -13,6 +13,23 @@
 
 Route::group(['middleware' =>['web']],function(){
 
+//Authentication Routes
+Route::get('auth/login','Auth\LoginController@showLoginForm')->name('login'); //get form
+Route::post('auth/login','Auth\LoginController@Login'); //send form
+Route::get('auth/logout','Auth\LoginController@Logout')->name('logout');
+//above name(param) is the same as '[as]=> named.route', it's new less error prone
+
+
+//Registration route
+Route::get('auth/register','Auth\RegisterController@showRegistrationForm')->name('register'); //get form
+Route::post('auth/register', 'Auth\RegisterController@register'); //send form
+
+
+// verify what comes into this slug parameter after parenthesis where can be added to verify the info coming in, regex meaning: any letter, any number, any - and _, plus any others with this sequence defines what the slug can take
+Route::get('/blog/{slug}',['as' => 'blog.single','uses' => 'BlogController@getSingle'])->where('slug','[\w\d\-\_]+'); //second paramater is the named route, as = name and uses means the function such as a controller it references to
+
+Route::get('/blog',['uses'=>'BlogController@getIndex','as'=>'blog.index']);
+
 Route::get('/contact', 'PagesController@getContact');
 
 Route::get('/about','PagesController@getAbout');
@@ -20,9 +37,7 @@ Route::get('/about','PagesController@getAbout');
 /*
 Display tasks
 */
-Route::get('/', function() {
-	return view('pages.welcome');
-});
+Route::get('/','PagesController@getIndex');
 
 Route::get('/info_input','PagesController@getInfo');
 
