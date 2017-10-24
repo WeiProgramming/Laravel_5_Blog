@@ -15,8 +15,8 @@ Route::group(['middleware' =>['web']],function(){
 
 //Authentication Routes
 Route::get('auth/login','Auth\LoginController@showLoginForm')->name('login'); //get form
-Route::post('auth/login','Auth\LoginController@Login'); //send form
-Route::get('auth/logout','Auth\LoginController@Logout')->name('logout');
+Route::post('auth/login','Auth\LoginController@login'); //send form
+Route::get('auth/logout','Auth\LoginController@logout')->name('logout');
 //above name(param) is the same as '[as]=> named.route', it's new less error prone
 
 
