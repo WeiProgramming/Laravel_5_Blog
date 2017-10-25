@@ -9,7 +9,6 @@
 
 
     <div class="container">
-        {{Auth::check()?"Logged In":"Logged Out"}}
 
         @yield('content') <!-- yield this area this wil lbe different and not use html but blade yieliding content-->
 
