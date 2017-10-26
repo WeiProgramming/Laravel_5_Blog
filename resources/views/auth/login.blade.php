@@ -18,6 +18,8 @@
 				<br>
 				{{Form::submit('Login',['class'=> 'btn btn-primary btn-block'])}}
 
+				<a href="{{route('password.request')}}">Forgot My Password</a>
+
 			{!! Form::close() !!}
 		</div>
 	</div>

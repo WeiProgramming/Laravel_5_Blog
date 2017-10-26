@@ -19,6 +19,12 @@ Route::post('auth/login','Auth\LoginController@login'); //send form
 Route::get('auth/logout','Auth\LoginController@logout')->name('logout');
 //above name(param) is the same as '[as]=> named.route', it's new less error prone
 
+//Password reset
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
 
 //Registration route
 Route::get('auth/register','Auth\RegisterController@showRegistrationForm')->name('register'); //get form
