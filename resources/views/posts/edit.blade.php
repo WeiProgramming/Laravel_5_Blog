@@ -12,8 +12,11 @@
         }--}}
         {{Form::label('slug','Slug:',['class' => 'form-spacing-top']) }}
         {{Form::text('slug',null, array('class'=> 'form-control')) }}
+        {{-- //blade version of select --}}
+        {{Form::label('category_id',"Category:",['class'=>'form-spacing-top'])}}
+        {{Form::select('category_id',$cats,null,['class'=> 'form-control'])}}
 
-         {{Form::label('body','Body:')}}
+         {{Form::label('body','Body:',['class'=>'form-spacing-top'])}}
         {{Form::textarea('body',null,['class' => 'form-control form-spacing-top'])}}
     </div>
     <div class ="col-md-4">
