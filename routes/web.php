@@ -16,6 +16,8 @@ Route::group(['middleware' =>['web']],function(){
 //Categories, except lists all the functions we don't want to use, you can use except to not use function or 'only' which will use only the functions we want
 Route::resource('categories','CategoryController',['except'=>['create']]);
 
+Route::resource('tags','TagController',['except'=>['create']]);
+
 //Authentication Routes
 Route::get('auth/login','Auth\LoginController@showLoginForm')->name('login'); //get form
 Route::post('auth/login','Auth\LoginController@login'); //send form

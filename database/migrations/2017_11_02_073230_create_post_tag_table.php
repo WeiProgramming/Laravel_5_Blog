@@ -13,7 +13,7 @@ class CreatePostTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('tag_post', function (Blueprint $table) {
+        Schema::create('post_tag', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('post_id')->unsigned(); //if syou don't say nullable then it's required by default
             $table->foreign('post_id')->references('id')->on('posts');//manually tell it's a foreign key field, 'post_id column links to the id filed in the post table'

@@ -4,6 +4,11 @@
 
 @section('content')
 
+@section('stylesheets')
+    {!! Html::style('css/parsley.css')!!}
+    {!! Html::style('css/select2.min.css')!!}
+@endsection
+
 <div class = "row">
     {!!Form::model($post,['route' => ['posts.update',$post->id],'method' => 'PUT'])!!}
     <div class = "col-md-8">
@@ -15,6 +20,9 @@
         {{-- //blade version of select --}}
         {{Form::label('category_id',"Category:",['class'=>'form-spacing-top'])}}
         {{Form::select('category_id',$cats,null,['class'=> 'form-control'])}}
+
+        {{Form::label('tags','Tags:',['class'=>'form-spacing-top'])}}
+        {{Form::select('tags[]',$tags,null,['class'=>'select2-multi','multiple'=>'multiple'])}}
 
          {{Form::label('body','Body:',['class'=>'form-spacing-top'])}}
         {{Form::textarea('body',null,['class' => 'form-control form-spacing-top'])}}
@@ -45,4 +53,13 @@
         {!!Form::close()!!}
 </div>
 
+@endsection
+
+@section('scripts')
+    {!! Html::style('css/select2.min.css')!!}
+        <script type="text/javascript">
+$(document).ready(function() {
+    $('.select2-multi').select2();
+});
+    </script>
 @endsection

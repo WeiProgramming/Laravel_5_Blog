@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     public function posts()
-    {
-    	return $this -> belongsToMany('App\Post');
+    {//(link to model, name of table(alphabetical), anme of current model, name of joining model _id)
+    	return $this -> belongsToMany('App\Post','post_tag');
     }
 }
